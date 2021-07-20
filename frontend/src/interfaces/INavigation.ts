@@ -7,6 +7,6 @@ export interface INavigation {
     Icon?: React.ComponentType<IconBaseProps>
     Route?: string
     exact?: boolean
-    Component: React.ComponentType<any>
+    Component?: React.ComponentType<any>
     Items?: INavigation[]
 }

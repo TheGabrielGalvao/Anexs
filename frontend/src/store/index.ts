@@ -3,8 +3,10 @@ import createSagaMiddleware from '@redux-saga/core'
 
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga'
+import { IClientState } from './ducks/Client/types'
 
 export interface ApplicationState {
+    client: IClientState
 }
 
 const sagaMiddleware = createSagaMiddleware()

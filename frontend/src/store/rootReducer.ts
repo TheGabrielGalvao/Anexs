@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
+import { clientReducer } from './ducks'
 
-
-export default combineReducers({})
+export default combineReducers({
+    client: clientReducer
+})

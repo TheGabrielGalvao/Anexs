@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API\\API.csproj": {}
+    "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API\\API.csproj": {
+    "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API\\API.csproj",
+        "projectUniqueName": "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API\\API.csproj",
+        "projectPath": "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API.csproj",
         "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\API\\obj\\",
+        "outputPath": "C:\\Profissional\\Projetos\\Challenges\\Anexs\\Projects\\backend\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
