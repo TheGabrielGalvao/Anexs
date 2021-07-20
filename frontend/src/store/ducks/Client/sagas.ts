@@ -6,7 +6,7 @@ import { IClient } from "./types";
 
 export function* load() {
     try {
-        const response: { data: IClient[] } = yield call(api.get, '/client')
+        const response: { data: IClient[] } = yield call(api.get, '/cliente')
 
         yield put(ClientActions.loadSuccess(response.data))
     }
@@ -15,22 +15,26 @@ export function* load() {
     }
 }
 
-export function* save(client: IClient) {
+export function* save(client?: IClient) {
     try {
-        yield call(api.post, '/client', client)
+        yield call(api.post, '/cliente', client)
 
-        yield put(ClientActions.saveSuccess(client))
+        if (client) {
+            yield put(ClientActions.saveSuccess(client))
+        }
     }
     catch (ex) {
         yield put(ClientActions.saveFailure())
     }
 }
 
-export function* remove(client: IClient) {
+export function* remove(client?: IClient) {
     try {
-        yield call(api.post, '/client', client)
+        yield call(api.post, '/cliente', client)
 
-        yield put(ClientActions.removeSuccess(client))
+        if (client) {
+            yield put(ClientActions.removeSuccess(client))
+        }
     }
     catch (ex) {
         yield put(ClientActions.removeFailure())
