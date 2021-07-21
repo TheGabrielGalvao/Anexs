@@ -31,7 +31,7 @@
 }
 
 body{
-    background: var(--background);
+    background: var(--gray-line);
     color: var(--text);
 }
 
@@ -46,12 +46,12 @@ button, a{
 button{
     padding: 1rem;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     border: none;
     transition: all 0.5s;
     color: var(--black);
+    border-radius: var(--radius);
 }
 
 button:hover{
@@ -69,9 +69,17 @@ a{
 
 .container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    text-align: center;
     padding: 2rem;
+    margin: 10vh auto;
     flex-wrap: wrap;
+    max-width: 90vw;
+    min-height: 80vh;
+    background: var(--background);
+    border-radius: var(--radius);
+    box-shadow: 1px 1px 5px var(--title);
+    flex-direction: column;
 }
 
 h5{

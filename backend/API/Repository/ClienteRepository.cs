@@ -71,11 +71,11 @@ namespace API.Repository
             }
         }
 
-        public bool Delete(Cliente cliente)
+        public bool Delete(int id)
         {
             try 
             {
-                connection.Execute("DELETE FROM cliente WHERE Id = @Id", cliente);
+                connection.Execute("DELETE FROM cliente WHERE Id = @Id", new {id = id });
 
                 return true;
             }

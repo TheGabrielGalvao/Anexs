@@ -15,12 +15,12 @@ export function* load() {
     }
 }
 
-export function* save(client?: IClient) {
+export function* save(action?: any) {
     try {
-        yield call(api.post, '/cliente', client)
+        yield call(api.post, '/cliente', action.data)
 
-        if (client) {
-            yield put(ClientActions.saveSuccess(client))
+        if (action.data) {
+            yield put(ClientActions.saveSuccess(action.data))
         }
     }
     catch (ex) {
@@ -28,15 +28,29 @@ export function* save(client?: IClient) {
     }
 }
 
-export function* remove(client?: IClient) {
+export function* remove(action?: any) {
     try {
-        yield call(api.post, '/cliente', client)
+        yield call(api.delete, `/cliente/${action.data.id}`)
 
-        if (client) {
-            yield put(ClientActions.removeSuccess(client))
+        if (action.data) {
+            yield put(ClientActions.removeSuccess(action.data))
         }
     }
     catch (ex) {
         yield put(ClientActions.removeFailure())
     }
 }
+
+// export function* remove(action?: any) {
+//     console.log(action)
+//     try {
+//         if (action.data) {
+//             yield call(api.delete, `/cliente/${action.data.id}`)
+
+//             yield put(ClientActions.removeSuccess(action.data))
+//         }
+//     }
+//     catch (ex) {
+//         yield put(ClientActions.removeFailure())
+//     }
+// }

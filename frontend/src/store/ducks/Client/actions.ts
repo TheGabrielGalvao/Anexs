@@ -13,7 +13,13 @@ export const loadSuccess = (data: IClient[]) => {
 export const loadFailure = () => action(EClientActions.LOAD_FAILURE)
 
 
-export const saveRequest = () => action(EClientActions.SAVE_REQUEST)
+export const saveRequest = (data: IClient) => {
+
+    return {
+        type: EClientActions.SAVE_REQUEST,
+        data: data
+    }
+}
 
 export const saveSuccess = (data: IClient) => {
     return {
@@ -25,13 +31,26 @@ export const saveSuccess = (data: IClient) => {
 export const saveFailure = () => action(EClientActions.SAVE_FAILURE)
 
 
-export const removeRequest = () => action(EClientActions.DELETE_REQUEST)
+export const editRequest = (data: IClient) => {
+    return {
+        type: EClientActions.EDIT_REQUEST,
+        data: data
+    }
+}
+
+export const removeRequest = (data: IClient) => {
+
+    return {
+        type: EClientActions.REMOVE_REQUEST,
+        data: data
+    }
+}
 
 export const removeSuccess = (data: IClient) => {
     return {
-        type: EClientActions.DELETE_SUCCESS,
+        type: EClientActions.REMOVE_SUCCESS,
         data: data,
     }
 }
 
-export const removeFailure = () => action(EClientActions.DELETE_FAILURE)
+export const removeFailure = () => action(EClientActions.REMOVE_FAILURE)

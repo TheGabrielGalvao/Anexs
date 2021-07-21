@@ -52,12 +52,12 @@ namespace API.Controller
             }
         }
 
-        [HttpDelete]
-        public IActionResult DeleteData([FromBody] Cliente cliente)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteData(int id)
         {
             try
             {
-                _clienteRepository.Delete(cliente);
+                _clienteRepository.Delete(id);
 
                 return Ok();
             }

@@ -10,6 +10,6 @@ namespace API.Repository
     {
         public IEnumerable<Cliente> ListAll();
         public bool Save(Cliente cliente);
-        public bool Delete(Cliente cliente);
+        public bool Delete(int id);
     }
 }

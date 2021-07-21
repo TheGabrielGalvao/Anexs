@@ -1,0 +1,42 @@
+form {
+    display: flex;
+    padding: 2rem;
+}
+
+
+.form-group{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.form-select-group{
+    display: flex;
+}
+
+.form-group .input{
+    margin-bottom: 2rem;
+    flex: 1;
+    border-radius: var(--radius);
+}
+
+.button{
+    position: relative;
+    top: -1.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-select-group .input:nth-child(1){
+    margin-right: 2rem;
+}
+
+.form-select-group:nth-child(1) .input:nth-child(2){
+    flex: 2;
+}
+
+.form-select-group:nth-child(2) .input:nth-child(1){
+    flex: 2;
+}

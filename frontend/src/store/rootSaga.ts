@@ -6,7 +6,7 @@ export default function* rootSaga() {
     yield all([
         takeLatest(EClientActions.LOAD_REQUEST, load),
         takeLatest(EClientActions.SAVE_REQUEST, save),
-        takeLatest(EClientActions.DELETE_REQUEST, remove),
+        takeLatest(EClientActions.REMOVE_REQUEST, remove),
     ])
 }
 
