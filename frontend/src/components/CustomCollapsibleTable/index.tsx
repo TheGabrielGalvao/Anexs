@@ -29,19 +29,12 @@ interface Props {
   removeRequest(client: IClient): void
 }
 
+interface RowProps extends Props {
+  client: IClient
+}
 
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
-    },
-  },
-});
-
-
-export const CustomCollapsibleTable: React.FC<Props> = ({ data, editRequest, removeRequest }) => {
+const Row: React.FC<RowProps> = ({ editRequest, removeRequest, client }) => {
   const [open, setOpen] = React.useState(false);
-  const classes = useRowStyles();
   const history = useHistory()
 
   const handleDelete = (client: IClient, event?: MouseEvent) => {
@@ -56,6 +49,67 @@ export const CustomCollapsibleTable: React.FC<Props> = ({ data, editRequest, rem
   }
 
   return (
+    <>
+      <TableRow>
+        <TableCell>
+          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell>{client?.nome}</TableCell>
+        <TableCell>{client?.cpf}</TableCell>
+        <TableCell>{client?.email}</TableCell>
+        <TableCell>{client?.telefone}</TableCell>
+        <TableCell>
+          <ButtonGroup disableElevation variant="contained" >
+            <IconButton onClick={() => handleEdit(client)}>
+              <CreateIcon />
+            </IconButton>
+            <IconButton onClick={() => handleDelete(client)}>
+              <DeleteIcon />
+            </IconButton>
+          </ButtonGroup>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box margin={1}>
+              <Typography variant="h6" gutterBottom component="div">
+
+              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Estado</TableCell>
+                    <TableCell>Cidade</TableCell>
+                    <TableCell>CEP</TableCell>
+                    <TableCell>Rua</TableCell>
+                    <TableCell>Número</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow key={client?.id}>
+                    <TableCell component="th" scope="row">
+                      {client?.estado}
+                    </TableCell>
+                    <TableCell>{client?.cidade}</TableCell>
+                    <TableCell>{client?.cep}</TableCell>
+                    <TableCell>{client?.rua}</TableCell>
+                    <TableCell>{client?.numero}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </>
+  )
+}
+
+export const CustomCollapsibleTable: React.FC<Props> = ({ data, editRequest, removeRequest }) => {
+  return (
     <Table aria-label="collapsible table">
       <TableHead>
         <TableRow>
@@ -69,62 +123,7 @@ export const CustomCollapsibleTable: React.FC<Props> = ({ data, editRequest, rem
       </TableHead>
       <TableBody>
         {data?.map((client) => (
-          <>
-            <TableRow className={classes.root}>
-              <TableCell>
-                <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-                  {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                </IconButton>
-              </TableCell>
-              <TableCell>{client.nome}</TableCell>
-              <TableCell>{client.cpf}</TableCell>
-              <TableCell>{client.email}</TableCell>
-              <TableCell>{client.telefone}</TableCell>
-              <TableCell>
-                <ButtonGroup disableElevation variant="contained" >
-                  <IconButton onClick={() => handleEdit(client)}>
-                    <CreateIcon />
-                  </IconButton>
-                  <IconButton onClick={() => handleDelete(client)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </ButtonGroup>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                <Collapse in={open} timeout="auto" unmountOnExit>
-                  <Box margin={1}>
-                    <Typography variant="h6" gutterBottom component="div">
-
-                    </Typography>
-                    <Table size="small" aria-label="purchases">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>Estado</TableCell>
-                          <TableCell>Cidade</TableCell>
-                          <TableCell>CEP</TableCell>
-                          <TableCell>Rua</TableCell>
-                          <TableCell>Número</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        <TableRow key={client.id}>
-                          <TableCell component="th" scope="row">
-                            {client.estado}
-                          </TableCell>
-                          <TableCell>{client.cidade}</TableCell>
-                          <TableCell>{client.cep}</TableCell>
-                          <TableCell>{client.rua}</TableCell>
-                          <TableCell>{client.numero}</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </Box>
-                </Collapse>
-              </TableCell>
-            </TableRow>
-          </>
+          <Row client={client} editRequest={editRequest} removeRequest={removeRequest} />
         ))}
       </TableBody>
     </Table>
