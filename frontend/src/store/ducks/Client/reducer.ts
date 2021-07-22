@@ -9,7 +9,6 @@ const INITIAL_STATE: IClientState = {
 }
 
 export const clientReducer: Reducer<IClientState> = (state = INITIAL_STATE, action) => {
-    console.log(action.type)
     switch (action.type) {
         case EClientActions.LOAD_REQUEST:
             return { ...state, loading: true }
@@ -28,7 +27,6 @@ export const clientReducer: Reducer<IClientState> = (state = INITIAL_STATE, acti
         case EClientActions.REMOVE_REQUEST:
             return { ...state, loading: true }
         case EClientActions.REMOVE_SUCCESS:
-            state.data.splice(action.data)
             return { ...state, loading: false, error: false, data: [...state.data.filter(x => x.id !== action.data.id)], }
         case EClientActions.REMOVE_FAILURE:
             return { ...state, loading: false, error: true }

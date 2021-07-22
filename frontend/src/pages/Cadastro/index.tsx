@@ -28,11 +28,12 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
         if (data != null && data !== {} && data !== "") {
             const errors = validate(data)
 
-            if (errors) {
+            if (Object.entries(errors).length > 0) {
                 setValidation(errors)
             }
             else {
                 saveRequest(data)
+                history.push("/")
             }
 
         }

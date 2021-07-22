@@ -48,16 +48,3 @@ export function* remove(action?: any) {
     }
 }
 
-// export function* remove(action?: any) {
-//     console.log(action)
-//     try {
-//         if (action.data) {
-//             yield call(api.delete, `/cliente/${action.data.id}`)
-
-//             yield put(ClientActions.removeSuccess(action.data))
-//         }
-//     }
-//     catch (ex) {
-//         yield put(ClientActions.removeFailure())
-//     }
-// }
