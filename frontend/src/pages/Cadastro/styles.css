@@ -1,11 +1,13 @@
 form {
     display: flex;
     padding: 2rem;
+    flex-wrap: wrap;
 }
 
 
 .form-group{
     display: flex;
+    flex-wrap: wrap;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
@@ -13,6 +15,7 @@ form {
 }
 
 .form-select-group{
+    flex-wrap: wrap;
     display: flex;
 }
 

@@ -14,7 +14,6 @@ export const loadFailure = () => action(EClientActions.LOAD_FAILURE)
 
 
 export const saveRequest = (data: IClient) => {
-
     return {
         type: EClientActions.SAVE_REQUEST,
         data: data
@@ -22,6 +21,13 @@ export const saveRequest = (data: IClient) => {
 }
 
 export const saveSuccess = (data: IClient) => {
+    if (data.id > 0) {
+        return {
+            type: EClientActions.EDIT_SUCCESS,
+            data: data,
+        }
+    }
+
     return {
         type: EClientActions.SAVE_SUCCESS,
         data: data,
@@ -37,6 +43,8 @@ export const editRequest = (data: IClient) => {
         data: data
     }
 }
+
+export const editFailure = () => action(EClientActions.EDIT_FAILURE)
 
 export const removeRequest = (data: IClient) => {
 

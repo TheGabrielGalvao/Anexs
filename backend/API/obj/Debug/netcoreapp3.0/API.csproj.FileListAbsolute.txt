@@ -390,3 +390,4 @@ C:\Profissional\Projetos\Challenges\Anexs\Projects\backend\API\obj\Debug\netcore
 C:\Profissional\Projetos\Challenges\Anexs\Projects\backend\API\obj\Debug\netcoreapp3.0\API.csproj.CopyComplete
 C:\Profissional\Projetos\Challenges\Anexs\Projects\backend\API\obj\Debug\netcoreapp3.0\API.dll
 C:\Profissional\Projetos\Challenges\Anexs\Projects\backend\API\obj\Debug\netcoreapp3.0\API.pdb
+C:\Profissional\Projetos\Challenges\Anexs\Projects\backend\API\obj\Debug\netcoreapp3.0\API.csprojAssemblyReference.cache

@@ -6,6 +6,8 @@ import { IClient, IClientState } from "../../store/ducks/Client/types"
 import * as ClientActions from "../../store/ducks/Client/actions"
 import { CustomCollapsibleTable } from '../../components/CustomCollapsibleTable'
 
+import './styles.css'
+
 interface Props {
     client: IClientState
     loadRequest(): void
@@ -17,9 +19,6 @@ const Home: React.FC<Props> = ({ client, loadRequest, editRequest, removeRequest
     useEffect(() => {
         loadRequest()
     }, [])
-
-    console.log(client.data)
-
 
     return (
         <div className="home">

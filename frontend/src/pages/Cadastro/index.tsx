@@ -13,44 +13,30 @@ import { IClient } from "../../store/ducks/Client/types"
 
 import './styles.css'
 import { useHistory } from "react-router-dom"
+import { validate } from "./validate"
 
 interface Props {
-    initialValues?: IClient
     saveRequest(client: IClient): void
 }
 
-interface IBGEUFResponse {
-    sigla: string
-}
-
-const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit, initialValues, saveRequest }) => {
-    const [estados, setEstados] = useState<string[]>([])
-    const [cidades, setCidades] = useState<string[]>([])
-    const [validate, setValidate] = useState<FormErrors<IClient>>({})
-    const [value, setValue] = useState('')
+const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit, saveRequest }) => {
+    const [validation, setValidation] = useState<FormErrors<IClient>>({})
 
     const history = useHistory()
 
     const submit = (data: any) => {
         if (data != null && data !== {} && data !== "") {
-            saveRequest(data)
-        }
-        if (Object.entries(validate).length === 0) {
-            history.push("/")
-        }
+            const errors = validate(data)
 
+            if (errors) {
+                setValidation(errors)
+            }
+            else {
+                saveRequest(data)
+            }
+
+        }
     }
-
-    const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value);
-    };
-
-    useEffect(() => {
-        IBGEApi.get<IBGEUFResponse[]>('estados').then(response => {
-            const data = response.data.map(estado => estado.sigla)
-            setEstados(data)
-        })
-    }, [])
 
     return (
         <div className="cadastro">
@@ -67,7 +53,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                         placeholder="Nome"
                         variant="outlined"
                         component={ReduxFormInput}
-                        message={validate?.nome}
+                        message={validation?.nome}
                     />
                     <Field
                         className="input"
@@ -79,7 +65,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                         placeholder="Email"
                         variant="outlined"
                         component={ReduxFormInput}
-                        message={validate?.email}
+                        message={validation?.email}
                     />
                     <Field
                         className="input"
@@ -91,7 +77,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                         placeholder="CPF"
                         variant="outlined"
                         component={ReduxFormInput}
-                        message={validate?.cpf}
+                        message={validation?.cpf}
                     />
                     <Field
                         className="input"
@@ -103,29 +89,11 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                         placeholder="Telefone"
                         variant="outlined"
                         component={ReduxFormInput}
-                        message={validate?.telefone}
+                        message={validation?.telefone}
                     />
                 </div>
                 <div className="form-group">
                     <div className="form-select-group">
-                        {/* <Field
-                            className="input"
-                            id="estado"
-                            name="estado"
-                            label="Estado"
-                            data={estados}
-                            component={ReduxFormSelect}
-                            mensagem={validate?.estado}
-                        />
-                        <Field
-                            className="input"
-                            id="cidade"
-                            name="cidade"
-                            label="Cidade"
-                            data={cidades}
-                            component={ReduxFormSelect}
-                            mensagem={validate?.cidade}
-                        /> */}
 
                         <Field
                             className="input"
@@ -137,7 +105,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                             placeholder="Estado"
                             variant="outlined"
                             component={ReduxFormInput}
-                            message={validate?.estado}
+                            message={validation?.estado}
                         />
                         <Field
                             className="input"
@@ -149,7 +117,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                             placeholder="Cidade"
                             variant="outlined"
                             component={ReduxFormInput}
-                            message={validate?.cidade}
+                            message={validation?.cidade}
                         />
                     </div>
                     <div className="form-select-group">
@@ -163,7 +131,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                             placeholder="CEP"
                             variant="outlined"
                             component={ReduxFormInput}
-                            message={validate?.cep}
+                            message={validation?.cep}
                         />
                         <Field
                             className="input"
@@ -175,7 +143,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                             placeholder="Número"
                             variant="outlined"
                             component={ReduxFormInput}
-                            message={validate?.numero}
+                            message={validation?.numero}
                         />
                     </div>
 
@@ -189,7 +157,7 @@ const Cadastro: React.FC<Props & InjectedFormProps<{}, Props>> = ({ handleSubmit
                         placeholder="Rua"
                         variant="outlined"
                         component={ReduxFormInput}
-                        message={validate?.rua}
+                        message={validation?.rua}
                     />
 
                     <div className="button">

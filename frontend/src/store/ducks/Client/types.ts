@@ -8,11 +8,14 @@ export enum EClientActions {
     SAVE_SUCCESS = "@client/SAVE_SUCCESS",
     SAVE_FAILURE = "@client/SAVE_FAILURE",
 
+    EDIT_REQUEST = "@client/EDIT_REQUEST",
+    EDIT_SUCCESS = "@client/EDIT_SUCCESS",
+    EDIT_FAILURE = "@client/EDIT_FAILURE",
+
     REMOVE_REQUEST = "@client/REMOVE_REQUEST",
     REMOVE_SUCCESS = "@client/REMOVE_SUCCESS",
     REMOVE_FAILURE = "@client/REMOVE_FAILURE",
 
-    EDIT_REQUEST = "@client/EDIT_REQUEST",
 }
 
 

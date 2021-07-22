@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 import { api } from "../../../services/api";
 import * as ClientActions from "./actions";
-import { IClient } from "./types";
+import { EClientActions, IClient } from "./types";
 
 
 export function* load() {
@@ -17,14 +17,21 @@ export function* load() {
 
 export function* save(action?: any) {
     try {
-        yield call(api.post, '/cliente', action.data)
-
         if (action.data) {
+            yield call(api.post, '/cliente', action.data)
+
             yield put(ClientActions.saveSuccess(action.data))
+
         }
     }
     catch (ex) {
-        yield put(ClientActions.saveFailure())
+        if (action.type === EClientActions.SAVE_REQUEST) {
+            yield put(ClientActions.saveFailure())
+        }
+        if (action.type === EClientActions.EDIT_REQUEST) {
+            yield put(ClientActions.editFailure())
+        }
+
     }
 }
 
